@@ -1,0 +1,6 @@
+<Solution>
+  <Folder Name="/Document/">
+    <File Path="README.md" />
+  </Folder>
+  <Project Path="DotNetTrainingBatch5.ConsoleApp/DotNetTrainingBatch5.ConsoleApp.csproj" />
+</Solution>
