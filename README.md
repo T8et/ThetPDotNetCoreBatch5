@@ -21,6 +21,8 @@ UI + Business Logic + Data Access => Database
 ADO.NET >> CRUD (DataAdapter & DataReader)
 Dapper  >> CRUD (Parameter & Model)
 
+This is new version for Batch 5 Homework
+
 
 
 
