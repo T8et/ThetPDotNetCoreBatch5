@@ -35,7 +35,9 @@ Console.ReadKey();
 //adn.Delete();
 
 DapperExample dp = new DapperExample();
-dp.Read();
+//dp.Read();
 //dp.Create("ThetPan", "ThetPan Blog", "Test Case");
 //dp.Update("Kempo Title1","Kempo","Test Kem",12);
 //dp.Delete(11);
+dp.Edit(1);
+dp.Edit(11);

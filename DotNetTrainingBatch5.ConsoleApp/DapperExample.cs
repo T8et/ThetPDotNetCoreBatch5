@@ -109,8 +109,30 @@ namespace DotNetTrainingBatch5.ConsoleApp
                 Console.WriteLine(result == 1 ? "Deleted Successfully":"Failed Delete");
             }
         }
+
+        public void Edit(int id)
+        {
+            string query = "SELECT * FROM TBL_BLOG WHERE BlogId=@BlogId";
+            using(IDbConnection dp = new SqlConnection(_connection))
+            {
+                var list = dp.Query(query, new BlogDataModel
+                {
+                    BlogId = id
+                }).FirstOrDefault();
+
+                if(list is null)
+                {
+                    Console.WriteLine("Data Not Found");
+                    return;
+                }
+
+                Console.WriteLine(list.BlogId + "|" + list.BlogTitle + "|" + list.BlogAuthor);
+            }
+        }
     }
 }
 
 //DTO - Data Transfer Object
 //28min
+
+
