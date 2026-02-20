@@ -39,5 +39,12 @@ DapperExample dp = new DapperExample();
 //dp.Create("ThetPan", "ThetPan Blog", "Test Case");
 //dp.Update("Kempo Title1","Kempo","Test Kem",12);
 //dp.Delete(11);
-dp.Edit(1);
-dp.Edit(11);
+//dp.Edit(1);
+//dp.Edit(11);
+
+EFCoreExample ef = new EFCoreExample();
+//ef.Create("ThetP Blog","ThetPan","ThetP Blog Content");
+//ef.Read();
+//ef.Edit(13);
+//ef.Update(13, "ThetP", "", "");
+ef.Delete(10);
