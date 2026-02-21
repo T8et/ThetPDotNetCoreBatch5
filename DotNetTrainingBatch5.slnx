@@ -3,4 +3,6 @@
     <File Path="README.md" />
   </Folder>
   <Project Path="DotNetTrainingBatch5.ConsoleApp/DotNetTrainingBatch5.ConsoleApp.csproj" />
+  <Project Path="DotNetTrainingBatch5.ConsoleAppWithDll/DotNetTrainingBatch5.ConsoleAppWithDll.csproj" Id="520ce33d-0666-4b1b-8db7-d9f91bc8e9c4" />
+  <Project Path="DotNetTrainingBatch5.Database/DotNetTrainingBatch5.Database.csproj" Id="124a84d0-56dd-457e-a740-97ec401aefba" />
 </Solution>

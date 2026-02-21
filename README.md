@@ -23,6 +23,31 @@ Dapper  >> CRUD (Parameter & Model)
 
 This is new version for Batch 5 Homework
 
+Select * from tbl_blog (nolock) = asnotracking() -> efcore (show only commit data)
+
+first user task -> select
+second user     -> insert
+third user      -> update
+
+commit data    -> sure data
+uncommit data  -> not sure data
+
+at Oracle >> only select commit data
+thus we need to add commit after update or create (all CRUD)
+
+Day 6 
+Ef core database first (manual, auto) / code first
+
+Northwind database
+
+
+select @@VERSION (check server version)
+select @@SERVERNAME (check server name)
+
+dotnet tool install --global dotnet-ef --version 7 (need to run)
+
+dotnet ef dbcontext scaffold "Server=.;Database=DotNetTrainingBatch5;User Id=sa;Password=p@ssw0rd;TrustServerCertificate=True" Microsoft.EntityFrameworkCore.SqlServer -o Models -c AppDBContext -f
+
 
 
 
