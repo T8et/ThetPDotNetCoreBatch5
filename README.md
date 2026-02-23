@@ -46,7 +46,20 @@ select @@SERVERNAME (check server name)
 
 dotnet tool install --global dotnet-ef --version 7 (need to run)
 
-dotnet ef dbcontext scaffold "Server=.;Database=DotNetTrainingBatch5;User Id=sa;Password=p@ssw0rd;TrustServerCertificate=True" Microsoft.EntityFrameworkCore.SqlServer -o Models -c AppDBContext -f
+dotnet ef dbcontext scaffold "Server=.;Database=DotNetTrainingBatch5;User Id=username;Password=password;TrustServerCertificate=True" Microsoft.EntityFrameworkCore.SqlServer -o Models -c AppDBContext -f
+
+REST API >> Representational State Transfer API
+
+CDN      >> Content Delivery Network
+
+CRUD (API Perspective)
+
+Get   : Read
+Post  : Create
+Put   : Update (All)
+Patch : Update (Selected Part)
+Delete: Delete
+
 
 
 
