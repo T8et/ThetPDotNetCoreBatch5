@@ -54,16 +54,46 @@ namespace DotNetTrainingBatch5.RESTAPI.Controllers
             return Ok(list);
         }
 
-        [HttpPatch]
-        public IActionResult PatchBlog()
+        [HttpPatch("{id}")]
+        public IActionResult PatchBlog(int id, TblBlog tblBlog)
         {
-            return Ok();
+            var list = _db.TblBlogs.AsNoTracking().Where(x => x.DeleteFlag == false && x.BlogId == id).FirstOrDefault();
+            if (list is null)
+            {
+                return BadRequest();
+            }
+
+            if(tblBlog.BlogTitle is not null)
+            {
+                list.BlogTitle = tblBlog.BlogTitle;
+            }
+            if (tblBlog.BlogAuthor is not null)
+            {
+                list.BlogAuthor = tblBlog.BlogAuthor;
+            }
+            if (tblBlog.BlogContent is not null)
+            {
+                list.BlogContent = tblBlog.BlogContent;
+            }
+
+            _db.Entry(list).State = EntityState.Modified;
+            _db.SaveChanges();
+            return Ok(list);
         }
 
-        [HttpDelete]
-        public IActionResult DeleteBlog()
+        [HttpDelete("{id}")]
+        public IActionResult DeleteBlog(int id)
         {
-            return Ok();
+            var list = _db.TblBlogs.AsNoTracking().Where(x => x.DeleteFlag == false && x.BlogId == id).FirstOrDefault();
+            if (list is null)
+            {
+                return BadRequest();
+            }
+
+            list.DeleteFlag = true;
+            _db.Entry(list).State = EntityState.Modified;
+            _db.SaveChanges();
+            return Ok(list);
         }
     }
 }
