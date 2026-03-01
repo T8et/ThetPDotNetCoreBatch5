@@ -47,4 +47,11 @@ EFCoreExample ef = new EFCoreExample();
 //ef.Read();
 //ef.Edit(13);
 //ef.Update(13, "ThetP", "", "");
-ef.Delete(10);
+//ef.Delete(10);
+
+AdoDotNetWithServices ads = new AdoDotNetWithServices();
+//ads.Read();
+//ads.ReadbyId();
+//ads.Create();
+//ads.Update();
+ads.Delete();
