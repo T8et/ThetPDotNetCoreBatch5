@@ -54,4 +54,4 @@ AdoDotNetWithServices ads = new AdoDotNetWithServices();
 //ads.ReadbyId();
 //ads.Create();
 //ads.Update();
-ads.Delete();
+//ads.Delete();
