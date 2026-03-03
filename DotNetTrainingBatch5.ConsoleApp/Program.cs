@@ -1,5 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using DotNetTrainingBatch5.ConsoleApp;
+using DotNetTrainingBatch5.Shared;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -55,3 +56,9 @@ AdoDotNetWithServices ads = new AdoDotNetWithServices();
 //ads.Create();
 //ads.Update();
 //ads.Delete();
+
+DapperWithServices ds = new DapperWithServices();
+//ds.Read();
+//ds.Create("DapAdd","DapKem","DapContent");
+//ds.Update("DapUpd", "DapKemUpd", "");
+ds.Delete();
