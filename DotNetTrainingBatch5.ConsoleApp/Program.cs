@@ -61,4 +61,4 @@ DapperWithServices ds = new DapperWithServices();
 //ds.Read();
 //ds.Create("DapAdd","DapKem","DapContent");
 //ds.Update("DapUpd", "DapKemUpd", "");
-ds.Delete();
+//ds.Delete();
