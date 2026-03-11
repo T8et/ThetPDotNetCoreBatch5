@@ -46,8 +46,70 @@ app.MapGet("/birds", () =>
     string folder = "Data/Birds.json";
     var jsondata = File.ReadAllText(folder);
     var rest = JsonConvert.DeserializeObject<BirdData>(jsondata)!;
+
     return Results.Ok(rest.Tbl_Bird);
 }).WithName("Birds").WithOpenApi();
+
+app.MapPost("/birdCreate", (Tbl_Bird requestObj) =>
+{
+    string folder = "Data/Birds.json";
+    var jsondata = File.ReadAllText(folder);
+    var retobj = JsonConvert.DeserializeObject<BirdData>(jsondata)!;
+
+    requestObj.Id = retobj.Tbl_Bird.Count() == 0 ? 1 : retobj.Tbl_Bird.Max(x => x.Id) + 1;
+    retobj.Tbl_Bird.Add(requestObj);
+
+    var jsondt = JsonConvert.SerializeObject(retobj);
+    File.WriteAllText(folder, jsondt);
+
+    return Results.Ok(jsondt);
+}).WithName("BirdsCreate").WithOpenApi();
+
+
+app.MapPut("/birdUpdate/{id}", (int uid, Tbl_Bird updateData) =>
+{
+    string folder = "Data/Birds.json";
+    var readtxt = File.ReadAllText(folder);
+    var retObj = JsonConvert.DeserializeObject<BirdData>(readtxt);
+
+    var item = retObj.Tbl_Bird.Where(x=>x.Id==uid).FirstOrDefault();
+
+    if (item is null) return Results.BadRequest();
+
+    updateData.Id = item.Id;
+    item.Id = updateData.Id;
+    item.BirdMyanmarName = updateData.BirdMyanmarName;
+    item.BirdEnglishName = updateData.BirdEnglishName;
+    item.Description = updateData.Description;
+    item.ImagePath = updateData.ImagePath;
+
+    //retObj.Tbl_Bird.Add(item);
+
+    var jsondt = JsonConvert.SerializeObject(retObj);
+    File.WriteAllText(folder, jsondt);
+
+    return Results.Ok(jsondt);
+
+}).WithName("BirdUpdate").WithOpenApi();
+
+
+app.MapDelete("/birdDel/{id}", (int did) =>
+{
+    string folder = "Data/Birds.json";
+    var txt = File.ReadAllText(folder);
+    var retobj = JsonConvert.DeserializeObject<BirdData>(txt);
+
+    var item = retobj.Tbl_Bird.Where(x=>x.Id == did).FirstOrDefault();
+    if (item is null) return Results.BadRequest();
+
+    retobj.Tbl_Bird.Remove(item);
+
+    var item1 = JsonConvert.SerializeObject(retobj);
+    File.WriteAllText(folder, item1);
+
+    return Results.Ok("Deleted");
+}).WithName("BirdDelete").WithOpenApi();
+
 
 app.MapGet("/birds/{id}", (int id) =>
 {
@@ -73,7 +135,7 @@ internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary
 
 public class BirdData
 {
-    public Tbl_Bird[] Tbl_Bird { get; set; }
+    public List<Tbl_Bird> Tbl_Bird { get; set; }
 }
 
 public class Tbl_Bird
