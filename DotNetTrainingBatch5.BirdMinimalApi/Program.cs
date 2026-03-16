@@ -72,7 +72,7 @@ app.MapPut("/birdUpdate/{id}", (int uid, Tbl_Bird updateData) =>
     var readtxt = File.ReadAllText(folder);
     var retObj = JsonConvert.DeserializeObject<BirdData>(readtxt);
 
-    var item = retObj.Tbl_Bird.Where(x=>x.Id==uid).FirstOrDefault();
+    var item = retObj.Tbl_Bird.Where(x => x.Id == uid).FirstOrDefault();
 
     if (item is null) return Results.BadRequest();
 
@@ -99,7 +99,7 @@ app.MapDelete("/birdDel/{id}", (int did) =>
     var txt = File.ReadAllText(folder);
     var retobj = JsonConvert.DeserializeObject<BirdData>(txt);
 
-    var item = retobj.Tbl_Bird.Where(x=>x.Id == did).FirstOrDefault();
+    var item = retobj.Tbl_Bird.Where(x => x.Id == did).FirstOrDefault();
     if (item is null) return Results.BadRequest();
 
     retobj.Tbl_Bird.Remove(item);
@@ -125,6 +125,17 @@ app.MapGet("/birds/{id}", (int id) =>
 
 }).WithName("BirdsWithID").WithOpenApi();
 
+app.MapGet("/tys", () =>
+{
+    string folder = "Data/tys.json";
+    string jsondata = File.ReadAllText(folder);
+    var jsonObj = JsonConvert.DeserializeObject<DataSeg>(jsondata);
+
+    if (jsonObj is null) return Results.BadRequest();
+
+    return Results.Ok(jsonObj.Name);
+}).WithName("GetAll").WithOpenApi();
+
 app.Run();
 
 internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
@@ -146,3 +157,16 @@ public class Tbl_Bird
     public string? Description { get; set; }
     public string? ImagePath { get; set; }
 }
+
+
+
+public class DataSeg
+{
+    public int id { get; set; }
+    public string Name { get; set; }
+    public string Title { get; set; }
+    public string Exp { get; set; }
+}
+
+
+
