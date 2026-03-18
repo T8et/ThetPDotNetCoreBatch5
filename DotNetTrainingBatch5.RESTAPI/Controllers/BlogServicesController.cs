@@ -16,7 +16,7 @@ namespace DotNetTrainingBatch5.RESTAPI.Controllers
         {
             _service = new BlogServices();
         }
-
+        [HttpGet]
         public IActionResult GetBlogs()
         {
             var list = _service.getBlogs();

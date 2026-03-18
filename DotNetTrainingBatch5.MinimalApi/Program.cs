@@ -107,7 +107,8 @@ app.UseHttpsRedirection();
 
 //"kempo".hello();
 
-app.BlogEndPoint();
+//app.BlogEndPoint();
+app.BlogServicesEndpoint();
 
 app.Run();
 

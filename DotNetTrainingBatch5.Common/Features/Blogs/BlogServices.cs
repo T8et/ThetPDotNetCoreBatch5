@@ -34,7 +34,7 @@ namespace DotNetTrainingBatch5.Common.Features.Blogs
 
         public TblBlog updateBlog(int id, TblBlog data_blog)
         {
-            var itemdata = _db.TblBlogs.AsNoTracking().FirstOrDefault(_ => _.BlogId == id);
+            var itemdata = _db.TblBlogs.AsNoTracking().Where(_ => _.BlogId == id).FirstOrDefault();
             if (itemdata is null) return null;
 
             itemdata.BlogTitle = data_blog.BlogTitle;
@@ -71,9 +71,9 @@ namespace DotNetTrainingBatch5.Common.Features.Blogs
             return data_blog;
         }
 
-        public TblBlog deleteBlog(int id)
+        public TblBlog? deleteBlog(int id)
         {
-            var itemdata = _db.TblBlogs.AsNoTracking().FirstOrDefault(_ => _.BlogId == id);
+            var itemdata = _db.TblBlogs.AsNoTracking().Where(_ => _.BlogId == id).FirstOrDefault();
             if (itemdata is null) return null;
 
             itemdata.DeleteFlag = true;
