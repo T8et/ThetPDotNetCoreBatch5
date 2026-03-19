@@ -60,6 +60,43 @@ Put   : Update (All)
 Patch : Update (Selected Part)
 Delete: Delete
 
+=========================
+Mini Kpay
+
+Me -> Another one
+
+Id
+FullName
+Phoneno
+Balance
+Pin
+
+Bank => Deposit , Withdrawl
+
+###Deposit
+
+Deposit API => Mobile No , Balance + (+) => 1000 + (+1000)
+
+###Withdrawl
+
+Withdrawl API => Mobile No, Balance + (-) => 1000 - (-1000) X
+
+###Transfer
+
+MobileNo not same
+Balance must exists
+Pin
+From -
+To +
+message
+trans history
+
+-Create Wallet User
+-login
+-change pass
+-phone change
+-balance
+
 
 
 

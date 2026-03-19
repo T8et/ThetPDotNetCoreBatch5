@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DotNetTrainingBatch5.RESTAPI.Controllers
 {
+    //Presentation layer
     [Route("api/[controller]")]
     [ApiController]
     public class BlogServicesController : ControllerBase

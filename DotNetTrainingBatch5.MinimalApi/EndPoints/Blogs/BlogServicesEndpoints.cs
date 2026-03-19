@@ -6,6 +6,7 @@ namespace DotNetTrainingBatch5.MinimalApi.EndPoints.Blogs
 {
     public static class BlogServicesEndpoints
     {
+        //Business Logic + Data Access Layer
         //public static string hello(this string nm)
         //{
         //    return "hello" + nm;
@@ -55,7 +56,7 @@ namespace DotNetTrainingBatch5.MinimalApi.EndPoints.Blogs
                 var result = _service.deleteBlog(id);
                 return Results.Ok("Delete Success");
             })
-                .WithName("DeleteBlogs")
+                .WithName("DeleteBlogs") 
                 .WithOpenApi();
         }
     }
