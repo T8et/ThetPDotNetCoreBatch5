@@ -7,6 +7,7 @@
   <Project Path="DotNetTrainingBatch5.ConsoleApp/DotNetTrainingBatch5.ConsoleApp.csproj" />
   <Project Path="DotNetTrainingBatch5.ConsoleAppWithDll/DotNetTrainingBatch5.ConsoleAppWithDll.csproj" Id="520ce33d-0666-4b1b-8db7-d9f91bc8e9c4" />
   <Project Path="DotNetTrainingBatch5.Database/DotNetTrainingBatch5.Database.csproj" Id="124a84d0-56dd-457e-a740-97ec401aefba" />
+  <Project Path="DotNetTrainingBatch5.HttpClient/DotNetTrainingBatch5.ConsoClient.csproj" Id="9b4f3f04-e9fe-46a6-a31e-633f1dd9ae24" />
   <Project Path="DotNetTrainingBatch5.JsonObject/DotNetTrainingBatch5.JsonObject.csproj" Id="17344458-8c18-4955-8eb6-00ae011f233c" />
   <Project Path="DotNetTrainingBatch5.MinimalApi/DotNetTrainingBatch5.MinimalApi.csproj" Id="4facf81a-14ed-4708-b4fc-673e0e07dded" />
   <Project Path="DotNetTrainingBatch5.RESTAPI/DotNetTrainingBatch5.RESTAPI.csproj" Id="dba5c31b-197b-446e-a881-4790af04898b" />
