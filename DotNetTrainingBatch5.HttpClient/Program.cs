@@ -8,9 +8,13 @@ Console.WriteLine("Hello, World!");
 
 RestSharpExample example = new RestSharpExample();
 //await example.Read();
-await example.ReadById(9);
+//await example.ReadById(9);
 //await response.ReadById(102);
 //await response.Update(100, 1, "hello", "hello test");
 //await response.Delete(10);
 
 //await response.Create(102, "New Api", "Api Test");
+
+RefitExample refit= new RefitExample();
+Console.ReadKey();
+await refit.RunAsync();
