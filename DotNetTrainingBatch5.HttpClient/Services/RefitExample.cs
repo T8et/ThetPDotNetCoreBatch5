@@ -17,6 +17,26 @@ namespace DotNetTrainingBatch5.ConsoClient.Services
             {
                 Console.WriteLine(blog.BlogTitle + "-" + blog.BlogAuthor + "-" + blog.BlogContent);
             }
+
+            try
+            {
+                var item2 = await iblogapi.GetBlog(1);
+            }
+            catch (ApiException ex)
+            {
+                if (ex.StatusCode == System.Net.HttpStatusCode.NotFound) 
+                {
+                    Console.WriteLine("No data Found");
+                }
+            }
+
+            var item4 = await iblogapi.CreateBlog(new ResTblBlog
+            {
+                BlogTitle = "New tile",
+                BlogAuthor = "New auth",
+                BlogContent = "hello"
+            });
+
         }
     }
 }

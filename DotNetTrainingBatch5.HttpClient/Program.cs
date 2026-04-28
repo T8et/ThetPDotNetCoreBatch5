@@ -15,6 +15,8 @@ RestSharpExample example = new RestSharpExample();
 
 //await response.Create(102, "New Api", "Api Test");
 
-RefitExample refit= new RefitExample();
+Console.WriteLine("Waiting for API");
 Console.ReadKey();
+
+RefitExample refit= new RefitExample();
 await refit.RunAsync();

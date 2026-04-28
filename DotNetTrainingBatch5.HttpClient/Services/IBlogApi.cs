@@ -9,8 +9,14 @@ namespace DotNetTrainingBatch5.ConsoClient.Services
 {
     public interface IBlogApi
     {
-        [Get("/api/GetBlogs")]
+        [Get("/api/Blogs")]
         Task<List<ResTblBlog>> GetBlogs();
+
+        [Get("/api/Blogs/{id}")]
+        Task<List<ResTblBlog>> GetBlog(int id);
+
+        [Post("/api/Blogs")]
+        Task<ResTblBlog> CreateBlog(ResTblBlog tblBlog);
     }
 
     public class ResTblBlog
