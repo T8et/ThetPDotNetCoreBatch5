@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -41,6 +42,15 @@ namespace DotNetTrainingBatch5.ConsoClient.Services
                 BlogContent = "HelloThisisContent",
                 BlogTitle = "ThisisBlogTitle",
             });
+
+            var item3 = await refitApi.PatchBlog(4, new refitBlog
+            {
+                BlogAuthor = "ThetPan3",
+                BlogContent = "HelloThisisContent3",
+                BlogTitle = "ThisisBlogTitle3"
+            });
+
+            var item4 = await refitApi.DeleteBlog(4);
 
         }
     }

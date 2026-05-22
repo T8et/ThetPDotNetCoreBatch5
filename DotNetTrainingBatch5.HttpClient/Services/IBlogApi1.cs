@@ -18,6 +18,11 @@ namespace DotNetTrainingBatch5.ConsoClient.Services
         [Post("/api/Blogs")]
         Task<refitBlog> CreateBlog(refitBlog blog);
 
+        [Patch("/api/Blogs/{id}")]
+        Task<refitBlog> PatchBlog(int id, refitBlog blog);
+
+        [Delete("/api/Blogs/{id}")]
+        Task<refitBlog> DeleteBlog(int id);
     }
 
     public partial class refitBlog
