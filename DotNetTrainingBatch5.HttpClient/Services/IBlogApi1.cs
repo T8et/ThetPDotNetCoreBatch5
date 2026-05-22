@@ -13,7 +13,11 @@ namespace DotNetTrainingBatch5.ConsoClient.Services
         Task<List<refitBlog>> GetBlogs();
 
         [Get("/api/Blogs/{id}")]
-        Task<List<refitBlog>> GetBlogid(int id);
+        Task<List<refitBlog>> GetBlogs(int id);
+
+        [Post("/api/Blogs")]
+        Task<refitBlog> CreateBlog(refitBlog blog);
+
     }
 
     public partial class refitBlog

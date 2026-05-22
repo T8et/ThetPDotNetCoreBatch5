@@ -21,7 +21,7 @@ namespace DotNetTrainingBatch5.ConsoClient.Services
 
             try
             {
-                var newitem = await refitApi.GetBlogid(3);
+                var newitem = await refitApi.GetBlogs(3);
                 foreach (var blog in newitem)
                 {
                     Console.WriteLine(blog.BlogTitle + "-" + blog.BlogAuthor + "-" + blog.BlogContent);
@@ -34,6 +34,14 @@ namespace DotNetTrainingBatch5.ConsoClient.Services
                     Console.WriteLine("No data Found");
                 }
             }
+
+            var item = await refitApi.CreateBlog(new refitBlog
+            {
+                BlogAuthor = "ThetPan",
+                BlogContent = "HelloThisisContent",
+                BlogTitle = "ThisisBlogTitle",
+            });
+
         }
     }
 }
