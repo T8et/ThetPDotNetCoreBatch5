@@ -1,21 +1,15 @@
 ﻿using DotNetTrainingBatch5.Database.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DotNetTrainingBatch5.Common.Features.Blogs
 {
-    public class BlogServices : IBlogServices
+    public class BlogServicesV1 : IBlogServices
     {
         //protected readonly AppDBContext _db = new AppDBContext();
 
         private readonly AppDBContext _db;
 
-        public BlogServices(AppDBContext db)
+        public BlogServicesV1(AppDBContext db)
         {
             _db = db;
         }

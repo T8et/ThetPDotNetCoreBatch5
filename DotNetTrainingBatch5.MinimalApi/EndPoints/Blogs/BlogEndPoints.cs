@@ -1,4 +1,5 @@
 ﻿using DotNetTrainingBatch5.Database.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace DotNetTrainingBatch5.MinimalApi.EndPoints.Blogs
@@ -12,18 +13,18 @@ namespace DotNetTrainingBatch5.MinimalApi.EndPoints.Blogs
 
         public static void BlogEndPoint(this IEndpointRouteBuilder app)
         {
-            app.MapGet("/blogs", () =>
+            app.MapGet("/blogs", ([FromServices] AppDBContext db) =>
             {
-                AppDBContext db = new AppDBContext();
+                //AppDBContext db = new AppDBContext();
                 var blog_data = db.TblBlogs.AsNoTracking().ToList();
                 return Results.Ok(blog_data);
             })
                 .WithName("GetBlogs")
                 .WithOpenApi();
 
-            app.MapGet("/blog/{id}", (int id) =>
+            app.MapGet("/blog/{id}", ([FromServices] AppDBContext db,int id) =>
             {
-                AppDBContext db = new AppDBContext();
+                //AppDBContext db = new AppDBContext();
                 var result = db.TblBlogs.AsNoTracking().Where(x => x.BlogId == id).ToList();
                 if (result is null) return Results.BadRequest("Not Found");
 
@@ -32,9 +33,9 @@ namespace DotNetTrainingBatch5.MinimalApi.EndPoints.Blogs
                 .WithName("GetBlogId")
                 .WithOpenApi();
 
-            app.MapPost("/blog", (TblBlog blog) =>
+            app.MapPost("/blog", ([FromServices] AppDBContext db, TblBlog blog) =>
             {
-                AppDBContext db = new AppDBContext();
+                //AppDBContext db = new AppDBContext();
                 db.TblBlogs.Add(blog);
                 db.SaveChanges();
                 return Results.Ok(blog);
@@ -42,9 +43,9 @@ namespace DotNetTrainingBatch5.MinimalApi.EndPoints.Blogs
                 .WithName("PostBlog")
                 .WithOpenApi();
 
-            app.MapPut("/blog/{id}", (int id, TblBlog blog) =>
+            app.MapPut("/blog/{id}", ([FromServices] AppDBContext db, int id, TblBlog blog) =>
             {
-                AppDBContext db = new AppDBContext();
+                //AppDBContext db = new AppDBContext();
                 var item = db.TblBlogs.AsNoTracking().Where(x => x.BlogId == id).FirstOrDefault();
                 if (item is null) return Results.BadRequest("Not Found");
 
@@ -59,9 +60,9 @@ namespace DotNetTrainingBatch5.MinimalApi.EndPoints.Blogs
                 .WithName("PutBlog")
                 .WithOpenApi();
 
-            app.MapDelete("/blog/{id}", (int id) =>
+            app.MapDelete("/blog/{id}", ([FromServices] AppDBContext db, int id) =>
             {
-                AppDBContext db = new AppDBContext();
+                //AppDBContext db = new AppDBContext();
                 var result = db.TblBlogs.AsNoTracking().Where(x => x.BlogId == id).FirstOrDefault();
 
                 if (result is null) return Results.BadRequest("Data Not Found!");

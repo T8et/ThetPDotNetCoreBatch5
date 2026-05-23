@@ -1,5 +1,6 @@
 ﻿using DotNetTrainingBatch5.Common.Features.Blogs;
 using DotNetTrainingBatch5.Database.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace DotNetTrainingBatch5.MinimalApi.EndPoints.Blogs
@@ -15,9 +16,9 @@ namespace DotNetTrainingBatch5.MinimalApi.EndPoints.Blogs
         public static void BlogServicesEndpoint(this IEndpointRouteBuilder app)
         {
 
-            BlogServices _service = new BlogServices();
+            //BlogServices _service = new BlogServices();
 
-            app.MapGet("/blogs", () =>
+            app.MapGet("/blogs", ([FromServices] IBlogServices _service) =>
             {
                 var data = _service.getBlogs();
                 return Results.Ok(data);
@@ -25,7 +26,7 @@ namespace DotNetTrainingBatch5.MinimalApi.EndPoints.Blogs
                 .WithName("GetBlogs")
                 .WithOpenApi();
 
-            app.MapGet("/blog/{id}", (int id) =>
+            app.MapGet("/blog/{id}", ([FromServices] IBlogServices _service,int id) =>
             {               
                 var result = _service.getBlog(id);
                 if (result is null) return Results.BadRequest("Not Found");
@@ -35,7 +36,7 @@ namespace DotNetTrainingBatch5.MinimalApi.EndPoints.Blogs
                 .WithName("GetBlogId")
                 .WithOpenApi();
 
-            app.MapPost("/blog", (TblBlog blog) =>
+            app.MapPost("/blog", ([FromServices] IBlogServices _service, TblBlog blog) =>
             {
                 var data = _service.createBlog(blog);
                 return Results.Ok(blog);
@@ -43,7 +44,7 @@ namespace DotNetTrainingBatch5.MinimalApi.EndPoints.Blogs
                 .WithName("PostBlog")
                 .WithOpenApi();
 
-            app.MapPut("/blog/{id}", (int id, TblBlog blog) =>
+            app.MapPut("/blog/{id}", ([FromServices] IBlogServices _service, int id, TblBlog blog) =>
             {
                 var result = _service.updateBlog(id, blog);
                 return Results.Ok("Successful Update");
@@ -51,7 +52,7 @@ namespace DotNetTrainingBatch5.MinimalApi.EndPoints.Blogs
                 .WithName("PutBlog")
                 .WithOpenApi();
 
-            app.MapDelete("/blog/{id}", (int id) =>
+            app.MapDelete("/blog/{id}", ([FromServices] IBlogServices _service, int id) =>
             {
                 var result = _service.deleteBlog(id);
                 return Results.Ok("Delete Success");

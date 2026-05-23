@@ -4,10 +4,11 @@ using DotNetTrainingBatch5.Database.Models;
 Console.WriteLine("Hello, World!");
 Console.ReadKey();
 
-AppDBContext db = new AppDBContext();
-var list = db.TblBlogs.ToList();
+//private readonly AppDBContext db = new AppDBContext();
 
-foreach(var item in list)
-{
-    Console.WriteLine(item.BlogId + "|" + item.BlogTitle + "|" + item.BlogAuthor + "|" + item.BlogContent);
-}
+//var list = db.TblBlogs.ToList();
+
+//foreach(var item in list)
+//{
+//    Console.WriteLine(item.BlogId + "|" + item.BlogTitle + "|" + item.BlogAuthor + "|" + item.BlogContent);
+//}

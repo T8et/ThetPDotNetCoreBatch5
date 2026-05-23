@@ -1,4 +1,19 @@
+using DotNetTrainingBatch5.Common.Features.Blogs;
+using DotNetTrainingBatch5.Database.Models;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+
+//Dependency Injection
+//UI
+//BL
+//DA
+builder.Services.AddDbContext<AppDBContext>(opt => {
+    opt.UseSqlServer(builder.Configuration.GetConnectionString("DBConnection"));
+});
+//builder.Services.AddScoped<IBlogServices, BlogServices>();
+builder.Services.AddScoped<IBlogServices, BlogServicesV1>();
+
 
 // 1. Add services to the container.
 builder.Services.AddControllers();

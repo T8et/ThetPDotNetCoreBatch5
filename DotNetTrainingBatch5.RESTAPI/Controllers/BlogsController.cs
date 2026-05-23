@@ -9,7 +9,14 @@ namespace DotNetTrainingBatch5.RESTAPI.Controllers
     [ApiController]
     public class BlogsController : ControllerBase
     {
-        protected readonly AppDBContext _db = new AppDBContext();
+        //protected readonly AppDBContext _db = new AppDBContext();
+        protected readonly AppDBContext _db;
+
+        public BlogsController(AppDBContext db)
+        {
+            _db = db;
+        }
+
         [HttpGet]
         public IActionResult GetBlogs() 
         {
