@@ -97,6 +97,11 @@ trans history
 -phone change
 -balance
 
+ASP.NET Core Life time Services
+
+Singleton
+Scoped
+Transient
 
 
 
