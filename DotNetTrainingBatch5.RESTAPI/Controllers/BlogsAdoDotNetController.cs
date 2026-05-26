@@ -11,7 +11,12 @@ namespace DotNetTrainingBatch5.RESTAPI.Controllers
     [ApiController]
     public class BlogsAdoDotNetController : ControllerBase
     {
-        protected readonly string _connection = "Data Source=.;Initial Catalog=DotNetTrainingBatch5;User Id=sa;Password=p@ssw0rd;TrustServerCertificate=True";
+        private readonly string _connection;
+
+        public BlogsAdoDotNetController(IConfiguration configuration)
+        {
+            _connection = configuration.GetConnectionString("DBConnection")!;
+        }
 
         [HttpGet]
         public IActionResult Get()
