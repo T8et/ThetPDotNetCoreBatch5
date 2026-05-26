@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using DotNetTrainingBatch5.ConsoleApp;
 using DotNetTrainingBatch5.Shared;
+using Microsoft.Extensions.DependencyInjection;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -62,3 +63,13 @@ DapperWithServices ds = new DapperWithServices();
 //ds.Create("DapAdd","DapKem","DapContent");
 //ds.Update("DapUpd", "DapKemUpd", "");
 //ds.Delete();
+
+//Console App Dependency Injection
+//Manage Nuget Package >> Add MicrosoftDependency Injection
+var services = new ServiceCollection().AddSingleton<AdoDotNetExample>().BuildServiceProvider();
+var AdNetDInject = services.GetRequiredService<AdoDotNetExample>();
+AdNetDInject.Read();
+//adn.Create();
+//adn.Read();
+//adn.Update();
+//adn.Delete();
