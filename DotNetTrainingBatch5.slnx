@@ -12,5 +12,6 @@
   <Project Path="DotNetTrainingBatch5.MinimalApi/DotNetTrainingBatch5.MinimalApi.csproj" Id="4facf81a-14ed-4708-b4fc-673e0e07dded" />
   <Project Path="DotNetTrainingBatch5.RESTAPI/DotNetTrainingBatch5.RESTAPI.csproj" Id="dba5c31b-197b-446e-a881-4790af04898b" />
   <Project Path="DotNetTrainingBatch5.RESTAPI1/DotNetTrainingBatch5.RESTAPI1.csproj" Id="ccf232de-fe20-4f5a-82e0-3facdb9b5a6d" />
+  <Project Path="DotNetTrainingBatch5.RESTAPI2/DotNetTrainingBatch5.RESTAPI2.csproj" Id="8b71c2e9-3b0a-466c-ac79-7f12591acd90" />
   <Project Path="DotNetTrainingBatch5.Shared/DotNetTrainingBatch5.Shared.csproj" Id="4ae7593c-d8b4-48c1-a24f-7f4b171bfd8f" />
 </Solution>
