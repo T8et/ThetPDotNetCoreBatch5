@@ -1,5 +1,6 @@
 <Solution>
   <Folder Name="/Document/">
+    <File Path="POSIdea.txt" />
     <File Path="README.md" />
   </Folder>
   <Project Path="DotNetTrainingBatch5.BirdMinimalApi/DotNetTrainingBatch5.BirdMinimalApi.csproj" Id="8ac036cc-bedd-4920-8999-8e988031d4ed" />

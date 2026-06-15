@@ -1,0 +1,45 @@
+Point of Sale Mini Project Idea
+-------------------------------
+Tbl - Product (BT_PRODUCT)
+--------------------------
+ProductId
+ProductCode
+ProductDesc
+ProductPrice
+CreatedOn
+CreatedBy
+ModifiedOn
+ModifiedBy
+
+Tbl - Product Category (BT_PRODUCT_CAT)
+---------------------------------------
+CatProductId
+CatProductCode
+CatProductDesc
+CreatedOn
+CreatedBy
+ModifiedOn
+ModifiedBy
+
+Tbl - Sale (BT_SALE)
+-------------------
+SaleId
+SaleCode
+SaleDate
+SaleTotAmount
+CreatedOn
+CreatedBy
+ModifiedOn
+ModifiedBy
+
+Tbl - Sale Detail (BT_SALE_DTL)
+-------------------------------
+SaleDtlId
+SaleCode
+ProductCode
+Qnty
+ProductPrice
+CreatedOn
+CreatedBy
+ModifiedOn
+ModifiedBy
