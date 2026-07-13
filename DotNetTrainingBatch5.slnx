@@ -3,6 +3,7 @@
     <File Path="POSIdea.txt" />
     <File Path="README.md" />
   </Folder>
+  <Folder Name="/Solution Items/" />
   <Project Path="DotNetTrainingBatch5.BirdMinimalApi/DotNetTrainingBatch5.BirdMinimalApi.csproj" Id="8ac036cc-bedd-4920-8999-8e988031d4ed" />
   <Project Path="DotNetTrainingBatch5.Common/DotNetTrainingBatch5.Common.csproj" Id="8329ea99-4c8c-4736-9864-24b68878a083" />
   <Project Path="DotNetTrainingBatch5.ConsoleApp/DotNetTrainingBatch5.ConsoleApp.csproj" />
