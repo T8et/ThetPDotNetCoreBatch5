@@ -28,6 +28,18 @@
             <button type="button" class="btn btn-success" id="btnSave">Save</button>
             <button type="button" class="btn btn-secondary" id="btnCancel">Cancel</button>
         </div>
+        <br>
+        <table>
+            <thead>
+                <th>No.</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Content</th>
+            </thead>
+            <tbody id="tblBlogs">
+
+            </tbody>
+        </table>
     </div>
 
 
@@ -40,30 +52,97 @@
             clearControl();
         })
 
-        $('#btnSave').click(()=>{
+        $('#btnSave').click(() => {
             getControl();
+            clearControl();
+            alert('Created Successfully');
         })
 
-        function clearControl(){
+        function clearControl() {
             $('#txtTitle').val('');
             $('#txtContent').val('');
             $('#txtAuthor').val('');
         }
 
-        function getControl(){
+        function getControl() {
             let title = $('#txtTitle').val();
             let content = $('#txtContent').val();
             let author = $('#txtAuthor').val();
 
-            const blog = {
-                btitle : title,
-                bcontent : content,
-                bauthor : author
-            };
+            let item = localStorage.getItem('newblog');
+            console.log(item);
 
-            localStorage.setItem('blogs',JSON.stringify(blog));
+            if (item == null) {
+                item = [];
+            } else {
+                item = JSON.parse(item);
+            }
+            const uuid = crypto.randomUUID();
+
+            const blog = {
+                bid: uuid,
+                btitle: title,
+                bcontent: content,
+                bauthor: author
+            };
+            item.push(blog);
+
+            localStorage.setItem('newblog', JSON.stringify(item));
         }
         //31min
+        //no room -> create room
+        //if exists -> create one
+
+        $(document).ready(function(){
+            loadData();
+        })
+
+        function loadData(){
+            let data = localStorage.getItem('newblog');
+            if(data == null){
+                data = [];
+            }else{
+                data = JSON.parse(data);
+            }
+
+            for(let i=0;i<data.length;i++){
+                const blog = data[i];
+                const tr = `
+                    <tr>
+                        <td>${blog.bid}</td>
+                        <td>${blog.bauthor}</td>
+                        <td>${blog.btitle}</td>
+                        <td>${blog.bcontent}</td>
+                    </tr>
+                `;
+                $('#tblBlogs').append(tr);
+            }
+        }
+
+        // $(document).ready(function () {
+        //     const uuid = crypto.randomUUID();
+        //     console.log(uuid);
+
+        //     let item = localStorage.getItem('newblog');
+        //     console.log(item);
+
+        //     const blog1 = {
+        //         btitle: 'test title',
+        //         bauthor: 'test author',
+        //         bcontent: 'test content'
+        //     };
+
+        //     if (item == null) {
+        //         item = [];
+        //     } else {
+        //         item = JSON.parse(item);
+        //     }
+        //     item.push(blog1);
+        //     console.log(item);
+
+        //     const jsonString = JSON.stringify(item);
+        //     localStorage.setItem('newblog', jsonString);
+        // })
     </script>
 
 </body>
