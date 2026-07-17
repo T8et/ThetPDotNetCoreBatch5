@@ -29,8 +29,9 @@
             <button type="button" class="btn btn-secondary" id="btnCancel">Cancel</button>
         </div>
         <br>
-        <table>
+        <table class="table table-responsive">
             <thead>
+                <th>Controls</th>
                 <th>No.</th>
                 <th>Title</th>
                 <th>Author</th>
@@ -53,9 +54,15 @@
         })
 
         $('#btnSave').click(() => {
-            getControl();
-            clearControl();
-            alert('Created Successfully');
+            if(editid == null){
+                getControl();
+                alert('Created Successfully');
+            }else{
+                updateControl();
+            }
+            
+            clearControl();      
+            loadData();
         })
 
         function clearControl() {
@@ -69,14 +76,7 @@
             let content = $('#txtContent').val();
             let author = $('#txtAuthor').val();
 
-            let item = localStorage.getItem('newblog');
-            console.log(item);
-
-            if (item == null) {
-                item = [];
-            } else {
-                item = JSON.parse(item);
-            }
+            let item = getData();
             const uuid = crypto.randomUUID();
 
             const blog = {
@@ -89,34 +89,106 @@
 
             localStorage.setItem('newblog', JSON.stringify(item));
         }
+
+        function updateControl(){
+            let title = $('#txtTitle').val();
+            let content = $('#txtContent').val();
+            let author = $('#txtAuthor').val();
+
+            let item = getData();
+
+            let index = item.findIndex(x=>x.bid==editid);
+            item[index].btitle = title;
+            item[index].bcontent = content;
+            item[index].bauthor = author;
+
+            localStorage.setItem('newblog', JSON.stringify(item));
+
+            clearControl();
+
+            editid == null;
+
+            alert("updated successfully");
+
+            loadData();
+        }
         //31min
         //no room -> create room
         //if exists -> create one
 
-        $(document).ready(function(){
+        $(document).ready(function () {
             loadData();
         })
 
-        function loadData(){
+        function getData(){
             let data = localStorage.getItem('newblog');
-            if(data == null){
+            if (data == null) {
                 data = [];
-            }else{
+            } else {
                 data = JSON.parse(data);
             }
+            return data;
+        }
 
-            for(let i=0;i<data.length;i++){
+        function loadData() {
+            let data = getData();
+
+            $('#tblBlogs').html('');
+            for (let i = 0; i < data.length; i++) {
                 const blog = data[i];
                 const tr = `
                     <tr>
-                        <td>${blog.bid}</td>
+                        <td>
+                            <button type="button" class="btn btn-warning btn-edit" id="btnupdate" data-blog-id="${blog.bid}">Edit</button>
+                            <button type="button" class="btn btn-danger btn-del" id="btndelete" data-blog-id="${blog.bid}">Delete</button>
+                        </td>
+                        <td>${i+1}</td>
                         <td>${blog.bauthor}</td>
                         <td>${blog.btitle}</td>
                         <td>${blog.bcontent}</td>
                     </tr>
                 `;
-                $('#tblBlogs').append(tr);
+                $('#tblBlogs').append(tr);      
             }
+            bindEditbtn();
+            bindDelete();
+        }
+
+        let editid = null;
+        function bindEditbtn(){
+            $('.btn-edit').click(function(){
+                let id = $(this).data('blog-id');
+                let data = getData();
+                let data1 = data.filter(x => x.bid == id);
+                console.log(data1);  
+                let data2 = data1[0];
+
+                $('#txtTitle').val(data2.btitle);
+                $('#txtContent').val(data2.bcontent);
+                $('#txtAuthor').val(data2.bauthor); 
+
+                editid = data2.bid;
+            })
+        }
+
+        function bindDelete(){
+            $('.btn-del').click(function(){
+
+                let id = $(this).data('blog-id');
+                
+                let data = getData();
+                data = data.filter(x => x.bid != id);
+
+                localStorage.setItem('newblog', JSON.stringify(data));
+
+                clearControl();
+
+                editid = null;
+
+                alert("deleted successfully");
+
+                loadData();
+            });
         }
 
         // $(document).ready(function () {
