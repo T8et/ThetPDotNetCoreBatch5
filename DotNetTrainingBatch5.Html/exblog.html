@@ -274,14 +274,11 @@
                 localStorage.setItem('newblog', JSON.stringify(data));
 
                 clearControl();
-
                 editId = null;
-
+                location.reload();
                 let toastE6 = document.getElementById('delToast');
                 let toast = new bootstrap.Toast(toastE6);
                 toast.show();
-                
-                showData();
             })
         }
     </script>
