@@ -16,7 +16,10 @@ namespace DotNetTrainingBatch5.MVCApp.Controllers
         public IActionResult Index()
         {
             ViewBag.Name = "ThetPan";
-            return View();
+
+            HomeResponseModel model = new HomeResponseModel();
+            model.txtMessage = "Welcome to ASP.NET Core MVC Application";
+            return View(model);
         }
 
         public IActionResult Privacy()
@@ -28,6 +31,11 @@ namespace DotNetTrainingBatch5.MVCApp.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public IActionResult Index2()
+        {
+            return View();
         }
     }
 }

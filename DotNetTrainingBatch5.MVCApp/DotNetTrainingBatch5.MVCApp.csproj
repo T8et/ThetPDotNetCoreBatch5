@@ -6,4 +6,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DotNetTrainingBatch5.Common\DotNetTrainingBatch5.Common.csproj" />
+    <ProjectReference Include="..\DotNetTrainingBatch5.Database\DotNetTrainingBatch5.Database.csproj" />
+  </ItemGroup>
+
 </Project>
