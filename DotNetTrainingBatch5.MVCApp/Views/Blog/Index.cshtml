@@ -1,10 +1,19 @@
 ﻿@model List<TblBlog>
 
-<table>
+<a href="Blog/Create" class="btn btn-primary">Create Blog</a>
+
+@{
+    bool isShowMessage = TempData["IsSuccess"] != null && TempData["Message"] != null;
+    bool isSuccess = false;
+    string message = string.Empty;
+    isSuccess = Convert.ToBoolean(TempData["IsSuccess"]);
+    message = Convert.ToString(TempData["Message"]);
+}
+
+<table class=" table table-responsive">
     <thead>
         <tr>
             <th>No.</th>
-            <th>Blog ID</th>
             <th>Blog Title</th>
             <th>Blog Content</th>
             <th>Blog Author</th>
@@ -15,12 +24,14 @@
         {
             <tr>
                 <td>@(i + 1)</td>
-                <td>@Model[i].BlogId</td>
                 <td>@Model[i].BlogTitle</td>
                 <td>@Model[i].BlogContent</td>
                 <td>@Model[i].BlogAuthor</td>
             </tr>
         }
     </tbody>
-    @* 50Min *@
+    @* 
+        50Min 
+        1:13Min
+    *@
 </table>
