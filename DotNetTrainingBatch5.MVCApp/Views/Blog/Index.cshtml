@@ -1,14 +1,34 @@
 ﻿@model List<TblBlog>
 
-<a href="Blog/Create" class="btn btn-primary">Create Blog</a>
-
 @{
     bool isShowMessage = TempData["IsSuccess"] != null && TempData["Message"] != null;
     bool isSuccess = false;
     string message = string.Empty;
-    isSuccess = Convert.ToBoolean(TempData["IsSuccess"]);
-    message = Convert.ToString(TempData["Message"]);
+    if (isShowMessage)
+    {
+        isSuccess = Convert.ToBoolean(TempData["IsSuccess"]);
+        message = Convert.ToString(TempData["Message"]);
+    }
 }
+
+
+@if (isShowMessage)
+{
+    if (isSuccess)
+    {
+        <div class="alert alert-success" role="alert">
+            @message
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger" role="alert">
+            @message
+        </div>
+    }
+}
+
+<a href="Blog/Create" class="btn btn-primary mt-3">Create Blog</a>
 
 <table class=" table table-responsive">
     <thead>
@@ -17,6 +37,7 @@
             <th>Blog Title</th>
             <th>Blog Content</th>
             <th>Blog Author</th>
+            <th>Controls</th>
         </tr>
     </thead>
     <tbody>
@@ -27,6 +48,10 @@
                 <td>@Model[i].BlogTitle</td>
                 <td>@Model[i].BlogContent</td>
                 <td>@Model[i].BlogAuthor</td>
+                <td>
+                    <button type="button" class="btn btn-warning">Edit</button>
+                    <a href="/Blog/Delete/@(@Model[i].BlogId)" class="btn btn-danger">Delete</a>
+                </td>
             </tr>
         }
     </tbody>

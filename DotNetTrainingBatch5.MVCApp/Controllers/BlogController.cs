@@ -54,5 +54,23 @@ namespace DotNetTrainingBatch5.MVCApp.Controllers
                       
             return RedirectToAction("Index");
         }
+
+
+        [ActionName("Delete")]
+        public IActionResult Delete(int id) 
+        {
+            try
+            {
+                _blogServices.deleteBlog(id);
+                TempData["isSuccess"] = true;
+                TempData["message"] = "Blog deleted successfully";
+            }
+            catch (Exception ex)
+            {
+                TempData["isSuccess"] = false;
+                TempData["message"] = ex.Message.ToString();
+            }
+            return RedirectToAction("Index");
+        }
     }
 }
