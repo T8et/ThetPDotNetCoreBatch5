@@ -22,13 +22,13 @@ namespace DotNetTrainingBatch5.Common.Features.Blogs
 
         public List<TblBlog> getBlogs()
         {
-            var data = _db.TblBlogs.AsNoTracking().ToList();
+            var data = _db.TblBlogs.AsNoTracking().Where(x=>x.DeleteFlag == false).ToList();
             return data;
         }
 
         public List<TblBlog> getBlog(int id)
         {
-            var data = _db.TblBlogs.AsNoTracking().Where(x => x.BlogId == id).ToList();
+            var data = _db.TblBlogs.AsNoTracking().Where(x => x.BlogId == id && x.DeleteFlag == false).ToList();
             return data;
         }
 

@@ -72,5 +72,48 @@ namespace DotNetTrainingBatch5.MVCApp.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        [ActionName("Edit")]
+        public IActionResult Edit(int id)
+        {
+            var data = _blogServices.getBlog(id).FirstOrDefault();
+            if (data is null)
+            {
+                TempData["isSuccess"] = false;
+                TempData["message"] = "Blog not found";
+                return RedirectToAction("Index");
+            }
+            var model = new BlogRequestModel
+            {
+                Id = data.BlogId,
+                Author = data.BlogAuthor,
+                Description = data.BlogContent,
+                Title = data.BlogTitle
+            };
+            return View("BlogEdit", model);
+        }
+
+        [HttpPost]
+        [ActionName("Update")]
+        public IActionResult Update(int id, BlogRequestModel blog)
+        {
+            try
+            {
+                _blogServices.patchBlog(id, new TblBlog
+                {
+                    BlogAuthor = blog.Author!,
+                    BlogContent = blog.Description,
+                    BlogTitle = blog.Title!
+                });
+                TempData["isSuccess"] = true;
+                TempData["message"] = "Blog updated successfully";
+            }
+            catch (Exception ex)
+            {
+                TempData["isSuccess"] = false;
+                TempData["message"] = ex.Message.ToString();
+            }
+            return RedirectToAction("Index");
+        }
     }
 }

@@ -49,8 +49,8 @@
                 <td>@Model[i].BlogContent</td>
                 <td>@Model[i].BlogAuthor</td>
                 <td>
-                    <button type="button" class="btn btn-warning">Edit</button>
-                    <a href="/Blog/Delete/@(@Model[i].BlogId)" class="btn btn-danger">Delete</a>
+                    <a href="/Blog/Edit/@Model[i].BlogId" class="btn btn-warning">Edit</a>
+                    <a href="/Blog/Delete/@Model[i].BlogId" class="btn btn-danger">Delete</a>
                 </td>
             </tr>
         }
