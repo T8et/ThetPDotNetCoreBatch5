@@ -1,0 +1,54 @@
+﻿<a href="Create" class="btn btn-primary mt-3">Create Blog</a>
+
+<table class=" table table-responsive">
+    <thead>
+        <tr>
+            <th>No.</th>
+            <th>Blog Title</th>
+            <th>Blog Content</th>
+            <th>Blog Author</th>
+            <th>Controls</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+        $(document).ready(function(){
+            loadData();
+        })
+
+        function loadData(){
+            $.ajax({
+                url: '/BlogAjax/List',
+                type: 'GET',
+                success: function(data) {
+                    $('tbody').empty();
+                    for (let i = 0; i < data.length; i++)
+                    {
+                        let blog = data[i];
+                        let row = `
+                            <tr>
+                                <td>${i + 1}</td>
+                                <td>${blog.BlogTitle}</td>
+                                <td>${blog.BlogContent}</td>
+                                <td>${blog.BlogAuthor}</td>
+                                <td>
+                                    <a href="/Blog/Edit/${blog.BlogId}" class="btn btn-primary">Edit</a>
+                                    <a href="/Blog/Delete/${blog.BlogId}" class="btn btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                        `;
+                        $('tbody').append(row);
+                    }
+                },
+                error: function() {
+                    alert('Error retrieving blogs.');
+                }
+            });
+        }
+    </script>
+}
