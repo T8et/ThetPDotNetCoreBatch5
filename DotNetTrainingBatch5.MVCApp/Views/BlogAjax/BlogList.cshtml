@@ -1,4 +1,4 @@
-﻿<a href="Create" class="btn btn-primary mt-3">Create Blog</a>
+﻿<a href="BlogAjax/Create" class="btn btn-primary mt-3">Create Blog</a>
 
 <table class=" table table-responsive">
     <thead>
@@ -37,17 +37,36 @@
                                 <td>${blog.BlogContent}</td>
                                 <td>${blog.BlogAuthor}</td>
                                 <td>
-                                    <a href="/Blog/Edit/${blog.BlogId}" class="btn btn-primary">Edit</a>
-                                    <a href="/Blog/Delete/${blog.BlogId}" class="btn btn-danger">Delete</a>
+                                    <a href="/BlogAjax/Edit/${blog.BlogId}" class="btn btn-primary">Edit</a>
+                                    <button type="button" data-id="${blog.BlogId}" class="btn btn-danger btn-delete">Delete</button>
                                 </td>
                             </tr>
                         `;
                         $('tbody').append(row);
                     }
+                    deleteBlog();
                 },
                 error: function() {
                     alert('Error retrieving blogs.');
                 }
+            });
+        }
+
+        function deleteBlog() {
+            $(".btn-delete").click(function() {
+                const did = $(this).data("id");
+                $.ajax({
+                    url: '/BlogAjax/Delete/' + did,
+                    type: 'POST',
+                    data: { id: did },
+                    success: function() {
+                        alert('Blog deleted successfully!');
+                        loadData();
+                    },
+                    error: function() {
+                        alert('Error deleting blog.');
+                    }
+                });
             });
         }
     </script>

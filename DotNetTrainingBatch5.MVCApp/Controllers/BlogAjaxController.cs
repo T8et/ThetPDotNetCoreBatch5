@@ -82,22 +82,25 @@ namespace DotNetTrainingBatch5.MVCApp.Controllers
             public string Message { get; set; }
         }
 
-
+        [HttpPost]
         [ActionName("Delete")]
-        public IActionResult Delete(int id) 
+        public IActionResult Delete(BlogRequestModel model) 
         {
+            MessageModel msgMdl;
             try
             {
-                _blogServices.deleteBlog(id);
+                _blogServices.deleteBlog(model.Id);
                 TempData["isSuccess"] = true;
                 TempData["message"] = "Blog deleted successfully";
+                msgMdl = new MessageModel(true, "Blog deleted successfully");
             }
             catch (Exception ex)
             {
                 TempData["isSuccess"] = false;
                 TempData["message"] = ex.Message.ToString();
+                msgMdl = new MessageModel(false, ex.Message.ToString());
             }
-            return RedirectToAction("Index");
+            return Json(msgMdl);
         }
 
         [ActionName("Edit")]
@@ -117,13 +120,14 @@ namespace DotNetTrainingBatch5.MVCApp.Controllers
                 Description = data.BlogContent,
                 Title = data.BlogTitle
             };
-            return View("BlogEdit", model);
+            return View("AjaxBlogEdit", model);
         }
 
         [HttpPost]
-        [ActionName("Update")]
+        [ActionName("AUpdate")]
         public IActionResult Update(int id, BlogRequestModel blog)
         {
+            MessageModel msgMdl;
             try
             {
                 _blogServices.patchBlog(id, new TblBlog
@@ -134,13 +138,16 @@ namespace DotNetTrainingBatch5.MVCApp.Controllers
                 });
                 TempData["isSuccess"] = true;
                 TempData["message"] = "Blog updated successfully";
+
+                msgMdl = new MessageModel(true, "Blog updated successfully");
             }
             catch (Exception ex)
             {
                 TempData["isSuccess"] = false;
                 TempData["message"] = ex.Message.ToString();
+                msgMdl = new MessageModel(false, ex.Message.ToString());
             }
-            return RedirectToAction("Index");
+            return Json(msgMdl);
         }
     }
 }

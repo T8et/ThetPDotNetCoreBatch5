@@ -1,18 +1,24 @@
-﻿@{
-    ViewData["Title"] = "Ajax Blog Create";
+﻿@Model BlogRequestModel
+
+@{
+    ViewData["Title"] = "Ajax Blog Edit";
 }
 
+<div class="mb-3 d-none">
+    <label for="txtTitle" class="form-label">Blog Id</label>
+    <input type="text" class="form-control" id="txtTitle" name="Id" value="@Model.Id" readonly>
+</div>
 <div class="mb-3">
     <label for="txtTitle" class="form-label">Blog Title</label>
-    <input type="text" class="form-control" id="txtTitle" name="Title">
+    <input type="text" class="form-control" id="txtTitle" name="Title" value="@Model.Title">
 </div>
 <div class="mb-3">
     <label for="txtAuthor" class="form-label">Blog Author</label>
-    <input type="text" class="form-control" id="txtAuthor" name="Author">
+    <input type="text" class="form-control" id="txtAuthor" name="Author" value="@Model.Author" >
 </div>
 <div class="mb-3">
     <label for="txtContent" class="form-label">Blog Content</label>
-    <textarea class="form-control" id="txtContent" name="Description" rows="3"></textarea>
+    <textarea class="form-control" id="txtContent" name="Description" rows="3">@Model.Description</textarea>
 </div>
 <div class="">
     <button type="button" class="btn btn-success" id="btnSave">Save</button>
@@ -23,30 +29,28 @@
     <script>
         $(document).ready(function() {
             $('#btnSave').click(function() {
-
+                let iid = $('#txtTitle').val();
                 let ititle = $('#txtTitle').val();
                 let iauthor = $('#txtAuthor').val();
                 let idescription = $('#txtContent').val();
-
                 $.ajax({
-                    url: '/BlogAjax/ASave',
+                    url: '/BlogAjax/AUpdate/@Model.Id',
                     type: 'POST',
                     data: {
+                        Id: iid,
                         Title: ititle,
                         Author: iauthor,
                         Description: idescription
                     },
                     success: function(response) {
-                        alert('Blog created successfully!');
-                        // Optionally, you can redirect or clear the form here
+                        alert('Blog updated successfully!');
                         window.location.href = '/BlogAjax'; // Redirect to the list page
                     },
                     error: function(xhr, status, error) {
-                        alert('Error creating blog: ' + xhr.responseText);
+                        alert('Error updating blog: ' + xhr.responseText);
                     }
                 });
             });
-            return Json(reponse);
         });
     </script>
 }
