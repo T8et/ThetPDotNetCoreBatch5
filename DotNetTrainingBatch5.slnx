@@ -5,6 +5,7 @@
   </Folder>
   <Folder Name="/Solution Items/" />
   <Project Path="DotNetTrainingBatch5.BirdMinimalApi/DotNetTrainingBatch5.BirdMinimalApi.csproj" Id="8ac036cc-bedd-4920-8999-8e988031d4ed" />
+  <Project Path="DotNetTrainingBatch5.ChartWebApp/DotNetTrainingBatch5.ChartWebApp.csproj" Id="5db9f867-ce0e-4dd4-873e-f39450f9de1c" />
   <Project Path="DotNetTrainingBatch5.Common/DotNetTrainingBatch5.Common.csproj" Id="8329ea99-4c8c-4736-9864-24b68878a083" />
   <Project Path="DotNetTrainingBatch5.ConsoleApp/DotNetTrainingBatch5.ConsoleApp.csproj" />
   <Project Path="DotNetTrainingBatch5.ConsoleAppWithDll/DotNetTrainingBatch5.ConsoleAppWithDll.csproj" Id="520ce33d-0666-4b1b-8db7-d9f91bc8e9c4" />

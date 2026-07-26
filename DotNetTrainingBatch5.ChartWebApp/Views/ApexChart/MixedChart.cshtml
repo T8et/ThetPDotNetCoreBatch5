@@ -1,0 +1,58 @@
+﻿@model ApexMixedChartModel
+
+<div id="chart"></div>
+
+@section scripts {
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script>
+        const blogData = @Html.Raw(JsonConvert.SerializeObject(Model.BlogData));
+        const socialData = @Html.Raw(JsonConvert.SerializeObject(Model.SocialData));
+        const labels = @Html.Raw(JsonConvert.SerializeObject(Model.Labels));
+
+        var options = {
+            series: [
+                {
+                    name: 'Website Blog',
+                    type: 'column',
+                    data: blogData
+                },
+                {
+                    name: 'Social Media',
+                    type: 'line',
+                    data: socialData
+                }
+            ],
+            chart: {
+                height: 350,
+                type: 'line'
+            },
+            stroke: {
+                width: [0, 4]
+            },
+            title: {
+                text: 'Traffic Sources'
+            },
+            dataLabels: {
+                enabled: true,
+                enabledOnSeries: [1]
+            },
+            labels: labels,
+            yaxis: [
+                {
+                    title: {
+                        text: 'Website Blog'
+                    }
+                },
+                {
+                    opposite: true,
+                    title: {
+                        text: 'Social Media'
+                    }
+                }
+            ]
+        };
+
+        var chart = new ApexCharts(document.querySelector('#chart'), options);
+        chart.render();
+    </script>
+}

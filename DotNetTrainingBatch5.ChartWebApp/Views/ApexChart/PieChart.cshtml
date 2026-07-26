@@ -1,0 +1,53 @@
+﻿@model ApexPieChartModel
+
+@{
+    int[] serires = Model.Series;
+    string[] labels = Model.Labels;
+}
+
+<div id="chart"></div>
+
+@section scripts{
+    <script>
+        const _series = @Html.Raw(JsonConvert.SerializeObject(serires));
+        const _labels = @Html.Raw(JsonConvert.SerializeObject(labels));
+
+        var options = {
+            series: _series,
+            chart: {
+                width: 480,
+                type: 'pie',
+            },
+            labels: _labels,
+            title: {
+                text: 'Website Traffic by Source',
+                align: 'center',
+            },
+            legend: {
+                show: false,
+            },
+            plotOptions: {
+                pie: {
+                    dataLabels: {
+                        external: {
+                            show: true,
+                        },
+                    },
+                },
+            },
+            responsive: [
+                {
+                    breakpoint: 480,
+                    options: {
+                        chart: {
+                            width: 320,
+                        },
+                    },
+                },
+            ],
+        }
+
+        var chart = new ApexCharts(document.querySelector('#chart'), options)
+        chart.render()
+    </script>
+}
