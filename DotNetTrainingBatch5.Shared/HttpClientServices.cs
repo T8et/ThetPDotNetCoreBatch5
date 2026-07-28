@@ -11,9 +11,10 @@ public class HttpClientServices : IRestClientServices
 {
     private readonly HttpClient _httpClient;
 
-    public HttpClientServices(HttpClient httpClient)
+    public HttpClientServices(string domainUrl)
     {
-        _httpClient = httpClient;
+        _httpClient = new HttpClient();
+        _httpClient.BaseAddress = new Uri(domainUrl);
     }
 
     public async Task<T> SendAsync<T>(string url, ReqType reqType, object? data = null)

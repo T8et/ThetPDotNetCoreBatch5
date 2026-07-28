@@ -1,0 +1,25 @@
+﻿@model TblBlog[]
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<table class="table table-responsive">
+    <thead>
+        <th>Tile</th>
+        <th>Content</th>
+        <th>Author</th>
+    </thead>
+    @foreach (var blog in Model)
+    {
+        <tbody>
+            <td>@blog.BlogTitle</td>
+            <td>@blog.BlogContent</td>
+            <td>@blog.BlogAuthor</td>
+        </tbody>
+    }
+</table>

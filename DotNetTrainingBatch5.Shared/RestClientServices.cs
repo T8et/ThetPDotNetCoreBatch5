@@ -12,9 +12,9 @@ namespace DotNetTrainingBatch5.Shared
     {
         private readonly RestClient restClient;
 
-        public RestClientServices(RestClient restClient)
+        public RestClientServices(string domain)
         {
-            this.restClient = restClient;
+            this.restClient = new RestClient(domain);
         }
 
         public async Task<T> SendAsync<T>(string url, ReqType method, object? data = null)

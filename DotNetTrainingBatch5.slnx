@@ -4,6 +4,7 @@
     <File Path="README.md" />
   </Folder>
   <Folder Name="/Solution Items/" />
+  <Project Path="DotNetTrainingBatch5.APISRVC/DotNetTrainingBatch5.APISRVC.csproj" Id="788a5f0f-7a12-4caa-bb8f-73454addd8d5" />
   <Project Path="DotNetTrainingBatch5.BirdMinimalApi/DotNetTrainingBatch5.BirdMinimalApi.csproj" Id="8ac036cc-bedd-4920-8999-8e988031d4ed" />
   <Project Path="DotNetTrainingBatch5.ChartWebApp/DotNetTrainingBatch5.ChartWebApp.csproj" Id="5db9f867-ce0e-4dd4-873e-f39450f9de1c" />
   <Project Path="DotNetTrainingBatch5.Common/DotNetTrainingBatch5.Common.csproj" Id="8329ea99-4c8c-4736-9864-24b68878a083" />
@@ -18,4 +19,5 @@
   <Project Path="DotNetTrainingBatch5.RESTAPI1/DotNetTrainingBatch5.RESTAPI1.csproj" Id="ccf232de-fe20-4f5a-82e0-3facdb9b5a6d" />
   <Project Path="DotNetTrainingBatch5.RESTAPI2/DotNetTrainingBatch5.RESTAPI2.csproj" Id="8b71c2e9-3b0a-466c-ac79-7f12591acd90" />
   <Project Path="DotNetTrainingBatch5.Shared/DotNetTrainingBatch5.Shared.csproj" Id="4ae7593c-d8b4-48c1-a24f-7f4b171bfd8f" />
+  <Project Path="DotNetTrainingBatch5.WebClient/DotNetTrainingBatch5.WebClient.csproj" Id="41211754-19b4-4265-aab6-72da271f86f6" />
 </Solution>
