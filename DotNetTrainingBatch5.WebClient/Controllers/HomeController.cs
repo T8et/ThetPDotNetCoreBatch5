@@ -2,6 +2,7 @@
 using DotNetTrainingBatch5.Shared;
 using DotNetTrainingBatch5.WebClient.Models;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System.Diagnostics;
 
 namespace DotNetTrainingBatch5.WebClient.Controllers
@@ -20,6 +21,7 @@ namespace DotNetTrainingBatch5.WebClient.Controllers
         public async Task<IActionResult> Index()
         {
             var blogs = await _resapi.SendAsync<TblBlog[]>("api/Blog", ReqType.GET);
+            _logger.LogInformation(JsonConvert.SerializeObject(blogs));
             return View(blogs);
         }
 
