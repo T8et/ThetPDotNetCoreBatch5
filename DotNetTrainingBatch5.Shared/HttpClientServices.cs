@@ -33,10 +33,7 @@ public class HttpClientServices : IRestClientServices
             return JsonConvert.DeserializeObject<T>(responseContent)!;
 
         }
-        else
-        {
-            throw new Exception($"Request failed with status code: {response.StatusCode}");
-        }
+        return default!;
     }
 }
 
