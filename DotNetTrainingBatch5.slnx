@@ -4,6 +4,7 @@
     <File Path="README.md" />
   </Folder>
   <Folder Name="/Solution Items/" />
+  <Project Path="DotNetTrainingBatch5.ApiLog/DotNetTrainingBatch5.ApiLog.csproj" Id="92d916bf-75f3-4e75-9ba7-c999b879f841" />
   <Project Path="DotNetTrainingBatch5.APISRVC/DotNetTrainingBatch5.APISRVC.csproj" Id="788a5f0f-7a12-4caa-bb8f-73454addd8d5" />
   <Project Path="DotNetTrainingBatch5.BirdMinimalApi/DotNetTrainingBatch5.BirdMinimalApi.csproj" Id="8ac036cc-bedd-4920-8999-8e988031d4ed" />
   <Project Path="DotNetTrainingBatch5.ChartWebApp/DotNetTrainingBatch5.ChartWebApp.csproj" Id="5db9f867-ce0e-4dd4-873e-f39450f9de1c" />
