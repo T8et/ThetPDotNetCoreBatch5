@@ -14,6 +14,7 @@
   <Project Path="DotNetTrainingBatch5.ConsoleLog/DotNetTrainingBatch5.ConsoleLog.csproj" Id="53618ce8-492a-40a7-ab4a-33b7e0a6ed5f" />
   <Project Path="DotNetTrainingBatch5.Database/DotNetTrainingBatch5.Database.csproj" Id="124a84d0-56dd-457e-a740-97ec401aefba" />
   <Project Path="DotNetTrainingBatch5.EncDec/DotNetTrainingBatch5.EncDec.csproj" Id="fccd3c98-9e6f-4e70-b78b-2221d8201c8b" />
+  <Project Path="DotNetTrainingBatch5.EncDecApi/DotNetTrainingBatch5.EncDecApi.csproj" Id="45444f0a-ce3d-4ae4-870b-a7aa9e957a1b" />
   <Project Path="DotNetTrainingBatch5.HttpClient/DotNetTrainingBatch5.ConsoClient.csproj" Id="9b4f3f04-e9fe-46a6-a31e-633f1dd9ae24" />
   <Project Path="DotNetTrainingBatch5.JsonObject/DotNetTrainingBatch5.JsonObject.csproj" Id="17344458-8c18-4955-8eb6-00ae011f233c" />
   <Project Path="DotNetTrainingBatch5.LogTest/DotNetTrainingBatch5.LogTest.csproj" Id="55042620-618d-4e65-8c50-44cb8187fe16" />
