@@ -17,7 +17,7 @@ namespace DotNetTrainingBatch5.LoginFlowEncrypt.Controllers
             this.encDecSrvc = encDecSrvc;
         }
 
-        [HttpPost]
+        [HttpPost("Login")]
         public IActionResult Login(loginRequest login)
         {
             try
@@ -52,6 +52,29 @@ namespace DotNetTrainingBatch5.LoginFlowEncrypt.Controllers
                 return StatusCode(500, ex.ToString());
             }
         }
+
+        [HttpPost("List")]
+        public IActionResult UserList(userListModel model)
+        {
+            try
+            {
+                encDecSrvc.decryptData(model.accessToken!);
+                var user = JsonConvert.DeserializeObject<loginModel>(encDecSrvc.decryptData(model.accessToken!));
+                if (user.sessionExpireTime < DateTime.Now)
+                {
+                    return Unauthorized("Session has expired");
+                }
+                return Ok(userStore.users);
+            }
+            catch (Exception ex) {
+                return StatusCode(500, ex.ToString());
+            }          
+        }
+    }
+
+    public class userListModel
+    {
+        public string? accessToken { get; set; }
     }
 
     public static class userStore
