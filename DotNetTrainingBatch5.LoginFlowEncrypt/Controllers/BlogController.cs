@@ -31,7 +31,7 @@ namespace DotNetTrainingBatch5.LoginFlowEncrypt.Controllers
                 {
                     var user = new loginModel
                     {
-                        sessionExpireTime = DateTime.Now.AddMinutes(1),
+                        sessionExpireTime = DateTime.Now.AddMinutes(10),
                         sessionId = Guid.NewGuid().ToString(),
                         username = result.username
                     };
@@ -58,8 +58,12 @@ namespace DotNetTrainingBatch5.LoginFlowEncrypt.Controllers
         {
             try
             {
-                encDecSrvc.decryptData(model.accessToken!);
-                var user = JsonConvert.DeserializeObject<loginModel>(encDecSrvc.decryptData(model.accessToken!));
+                HttpContext.Request.Headers.TryGetValue("token", out var ntoken);
+
+                if (ntoken.Count == 0) return Unauthorized("Access Token required");
+
+                encDecSrvc.decryptData(ntoken.ToString());
+                var user = JsonConvert.DeserializeObject<loginModel>(encDecSrvc.decryptData(ntoken.ToString()!));
                 if (user.sessionExpireTime < DateTime.Now)
                 {
                     return Unauthorized("Session has expired");
