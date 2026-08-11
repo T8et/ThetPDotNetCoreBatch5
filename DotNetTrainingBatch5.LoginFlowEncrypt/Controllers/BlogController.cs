@@ -1,6 +1,7 @@
 ﻿using DotNetTrainingBatch5.LoginFlowEncrypt.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Newtonsoft.Json;
 using System.Text.Json.Serialization;
 
@@ -74,6 +75,20 @@ namespace DotNetTrainingBatch5.LoginFlowEncrypt.Controllers
                 return StatusCode(500, ex.ToString());
             }          
         }
+
+        [ServiceFilter(typeof(SampleAsyncActionFilter))]
+        [HttpPost("List1")]
+        public IActionResult UserList1(userListModel model)
+        {
+            try
+            {
+                return Ok(userStore.users);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.ToString());
+            }
+        }
     }
 
     public class userListModel
@@ -114,5 +129,26 @@ namespace DotNetTrainingBatch5.LoginFlowEncrypt.Controllers
     public class blogResponseModel
     {
         public string? accessToken { get; set; }
+    }
+
+    public class SampleAsyncActionFilter : IAsyncActionFilter
+    {
+        public async Task OnActionExecutionAsync(
+            ActionExecutingContext context, ActionExecutionDelegate next)
+        {
+            // Do something before the action executes.
+            // before
+            var result = context.HttpContext.Request.Headers.TryGetValue("token", out var ntoken);
+
+            if (!result)
+            {
+                context.Result = new UnauthorizedResult();
+                return;
+            }
+
+            await next();
+            // Do something after the action executes.
+            // after
+        }
     }
 }

@@ -1,3 +1,4 @@
+using DotNetTrainingBatch5.LoginFlowEncrypt.Controllers;
 using DotNetTrainingBatch5.LoginFlowEncrypt.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -5,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddSingleton<EncDecSrvc>();
+builder.Services.AddScoped<SampleAsyncActionFilter>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
