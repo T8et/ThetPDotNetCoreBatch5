@@ -146,9 +146,73 @@ namespace DotNetTrainingBatch5.LoginFlowEncrypt.Controllers
                 return;
             }
 
+            var encDecSrvc = context.HttpContext.RequestServices.GetService<EncDecSrvc>();
+            var jsonString = encDecSrvc?.decryptData(ntoken.ToString());
+            var user = JsonConvert.DeserializeObject <loginModel>(jsonString!);
+
+            if(user!.sessionExpireTime < DateTime.Now)
+            {
+                context.Result = new UnauthorizedResult();
+                return;
+            }
+
             await next();
             // Do something after the action executes.
             // after
         }
     }
+
+    public class ValidationTokenMiddleWare
+    {
+        private readonly RequestDelegate _next;
+
+        public ValidationTokenMiddleWare(RequestDelegate next)
+        {
+            _next = next;
+        }
+        
+        public async Task InvokeAsync(HttpContext context)
+        {
+            // Middleware logic here
+            //if(context.Request.Path.StartsWithSegments("/WeatherForecast"))
+            //{
+            //    goto skip;
+            //}
+            string requestPath = context.Request.Path.ToString();
+            if(!string.IsNullOrEmpty(requestPath) && allowEndPoints.Contains(requestPath))
+            {
+                goto skip;
+            }
+
+            var result = context.Request.Headers.TryGetValue("token", out var ntoken);
+            if (!result) 
+            {
+                context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+                return;
+            }
+
+            var encDecSrvc = context.RequestServices.GetService<EncDecSrvc>();
+            var jsonString = encDecSrvc?.decryptData(ntoken.ToString());
+            var user = JsonConvert.DeserializeObject<loginModel>(jsonString!);
+            if (user!.sessionExpireTime < DateTime.Now)
+            {
+                context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+                return;
+            }
+        skip:
+            await _next(context);
+        }
+
+        public string[] allowEndPoints = new string[] { "/WeatherForecast", "/api/Blog/Login" };
+    }
+
+    public static class ValidationTokenMiddleWareExtensions
+    {
+        public static IApplicationBuilder UseRequestCulture(
+            this IApplicationBuilder app)
+        {
+            return app.UseMiddleware<ValidationTokenMiddleWare>();
+        }
+    }
+
 }

@@ -24,6 +24,10 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseRequestCulture();
+//ValidationTokenMiddleWareExtensions.UseRequestCulture(app);
+//app.UseRequestCulture();
+
 app.UseAuthorization();
 
 app.MapControllers();
